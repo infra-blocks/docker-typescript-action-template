@@ -48,8 +48,12 @@ jobs:
       - uses: jenseng/dynamic-uses@v1
         id: self-test
         with:
+<<<<<<< HEAD
           uses: docker://public.ecr.aws/infrastructure-blocks/docker-typescript-action-template:git-sha-${{ github.sha }}
+=======
+          uses: docker://public.ecr.aws/infrastructure-blocks/docker-action-template:git-sha-${{ github.sha }}
+>>>>>>> template/master
           with: '{"example-input": "hello"}'
       - name: Show outputs
         run: |
-          echo "Example output: ${{ fromJson(steps.self-test.outputs.outputs).example-output }}"
+          printf ${{ toJson(steps.self-test.outputs.outputs) }} | jq
